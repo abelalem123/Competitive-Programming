@@ -19,4 +19,4 @@ class Solution {
         }
         return count;
     }
-}max-number-of-k-sum-pairs
+}
