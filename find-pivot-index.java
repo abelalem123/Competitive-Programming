@@ -1,26 +1,20 @@
 class Solution {
-    public int[] sum(int[] nums) {
-        int sum = 0;
-        int[] sumArr = new int[nums.length];
-        
-        for(int i = 0; i < nums.length; i++) {
-            sum = sum + nums[i];
-            sumArr[i] = sum;
-        }
-        
-        return sumArr;
-    }
-    
     public int pivotIndex(int[] nums) {
-        int[] sumArr = sum(nums);
-        int end = nums.length - 1;
-        
-        for(int i = 0; i < nums.length; i++) {
-            if(sumArr[i] - nums[i] == sumArr[end] - sumArr[i]) {
-                return i;
-            }
+        int sum=0;
+        int index=-1;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
         }
-        
-        return -1;
+        int left_sum=0;
+       for(int i=0;i<nums.length;i++){
+            if(sum-left_sum-nums[i]==left_sum){
+            index=i;
+            break;
+        }
+        else{
+            left_sum+=nums[i];
+        }
+       }
+        return index;
     }
 }
