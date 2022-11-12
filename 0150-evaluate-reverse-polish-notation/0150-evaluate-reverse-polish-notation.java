@@ -20,7 +20,7 @@ class Solution {
                 ans = result;
             }
         }
-        return myStack.pop();
+        return ans;
         
     }
 }
