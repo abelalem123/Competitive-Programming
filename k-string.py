@@ -1,14 +1,11 @@
-from collections import Counter
-
-x = int(input())
-words = input()
-cnt = Counter()
-
-
 def myFunc():
+    x = int(input())
+    words = input()
+    cnt={}
+
     word = ''
     for letter in words:
-        cnt[letter] += 1
+        cnt[letter] =cnt.get(letter,0)+1
     for val in cnt.values():
         if x != val:
             return -1
