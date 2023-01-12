@@ -1,7 +1,6 @@
 class Solution:
     def countPairs(self, deliciousness: List[int]) -> int:
         res=0
-        
         temp_dict={}
 
         for i in deliciousness:
