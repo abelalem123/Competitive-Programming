@@ -1,10 +1,17 @@
 class Solution:
     def countPairs(self, deliciousness: List[int]) -> int:
-        ans = 0
-        freq = defaultdict(int)
-        for x in deliciousness: 
-            for k in range(22): 
-                ans += freq[2**k - x]
-            freq[x] += 1
-        return ans % 1_000_000_007
+        res=0
         
+        temp_dict={}
+
+        for i in deliciousness:
+            if len(temp_dict)==0:
+                temp_dict[i]=0
+            for j in range(22):
+                if (2**j)-i in temp_dict:
+                    res+=temp_dict[(2**j)-i]
+            if i not in temp_dict:
+                temp_dict[i]=1
+            elif i in temp_dict or temp_dict[i]==0:
+                temp_dict[i]+=1
+        return res % ((10**9)+7)
