@@ -6,5 +6,4 @@ class Solution:
             lastIndex = (lastIndex + k - 1) % len(circle)
             print(lastIndex)
             del circle[lastIndex]
-            # lastIndex = lastIndex % len(circle)
         return circle[0]
