@@ -10,16 +10,9 @@ class Solution:
             
         return False
         
-#         left=0
-#         right=len(matrix)-1
-#         row
-        
-#         while left<=right:
-#             mid=(right+left)//2
-#             if matrix[mid][-1]<target:
-#                 left=mid+1
-#             else:
-#                 right=mid-1
-                
-                
+# for row in matrix:
+#     i=bisect_right(row,target)
+#     if i and row[i-1]==target:
+#         return True
+#     return False
         
