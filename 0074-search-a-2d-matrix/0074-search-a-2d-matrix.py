@@ -9,10 +9,10 @@ class Solution:
                     return True
             
         return False
-        
-# for row in matrix:
-#     i=bisect_right(row,target)
-#     if i and row[i-1]==target:
-#         return True
-#     return False
-        
+
+#           for row in matrix:
+#              i=bisect_right(row,target)
+#               if i and row[i-1]==target:
+#                     return True
+#                 return False
+               
