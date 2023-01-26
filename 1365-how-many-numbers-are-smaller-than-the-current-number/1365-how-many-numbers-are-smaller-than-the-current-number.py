@@ -8,6 +8,7 @@ class Solution:
         for i in nums:
             res.append(sum(count[:i]))
         return res
+    
 #         temp=sorted(nums)
 #         dicts={}
         
