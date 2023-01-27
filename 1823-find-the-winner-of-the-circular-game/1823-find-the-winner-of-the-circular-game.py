@@ -4,6 +4,5 @@ class Solution:
         lastIndex = 0
         while len(circle) > 1:
             lastIndex = (lastIndex + k - 1) % len(circle)
-            print(lastIndex)
             del circle[lastIndex]
         return circle[0]
