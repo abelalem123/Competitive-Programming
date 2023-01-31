@@ -1,18 +1,30 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        left = 0
+        right = len(matrix) -1
+        row = -1
+        while left <= right:
+            mid  = ( left + right ) // 2
+            if matrix[mid][-1] >= target:
+                row = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+                
+        if row == -1:
+            return False
         
-        for i in range(len(matrix)):
-            if matrix[i][-1]==target:
+        left = 0
+        right = len(matrix[row])-1
+        
+        while left <= right:
+            mid = left + (right - left)//2
+            
+            if matrix[row][mid] > target:
+                right = mid - 1
+            elif matrix[row][mid] < target:
+                left = mid + 1
+            else:
                 return True
-            elif matrix[i][-1]>target:
-                if target in matrix[i]:
-                    return True
             
         return False
-
-#           for row in matrix:
-#              i=bisect_right(row,target)
-#               if i and row[i-1]==target:
-#                     return True
-#                 return False
-               
