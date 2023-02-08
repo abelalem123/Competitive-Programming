@@ -12,7 +12,7 @@ class Solution:
             r-=1
         sumx=teams[0][0]*teams[0][1]
         for i in range(1,len(teams)):
-            if teams[i-1][0]+teams[i-1][1]!=teams[i][0]+teams[i][1]:
+            if sum(teams[i-1])!=sum(teams[i]):
                 return -1
             sumx+=teams[i][0]*teams[i][1]
         return sumx
