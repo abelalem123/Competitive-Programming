@@ -7,7 +7,6 @@ class Solution:
         
         for i in range(len(s)):
             indexs[ord(s[i])-97]=i
-        print(indexs)
         for i in range(len(s)):
             end=max(indexs[ord(s[i])-97],end)
             if i==end:
