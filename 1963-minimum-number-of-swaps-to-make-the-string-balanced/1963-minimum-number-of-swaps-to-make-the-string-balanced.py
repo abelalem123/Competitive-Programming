@@ -1,12 +1,10 @@
 class Solution:
     def minSwaps(self, s: str) -> int:
-        l=0
-        r=0
+        stk=[]
         for i in s:
-            if i==']':
-                r+=1
-            else:
-                r-=1
-            l=max(l,r)
-        
-        return (l+1)//2
+            if stk and i==']':
+                stk.pop()
+            elif i=='[':
+                stk.append(i)
+
+        return (len(stk)+1)//2
