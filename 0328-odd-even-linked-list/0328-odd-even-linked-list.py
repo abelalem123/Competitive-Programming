@@ -10,7 +10,7 @@ class Solution:
             return head    
         even = head.next
         evenhead = head.next
-        while even and even.next is not None:
+        while even and even.next:
             odd.next = odd.next.next
             odd = odd.next 
             even.next = even.next.next 
