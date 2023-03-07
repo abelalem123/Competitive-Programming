@@ -4,8 +4,8 @@ class Solution:
         s1.sort()
         l = len(s1)
         for i in range(len(s2)-l+1):
-            req = list(s2[i:i+l])
-            req.sort()
-            if req == s1:
-                return (True)
+            sub = list(s2[i:i+l])
+            sub.sort()
+            if sub == s1:
+                return True
         return False   
