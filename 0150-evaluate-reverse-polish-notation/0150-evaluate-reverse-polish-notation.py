@@ -5,22 +5,18 @@ class Solution:
             if num=="*":
                 op1=stack.pop()
                 op2=stack.pop()
-                print(op1,op2,num)
                 stack.append(op1*op2)
             elif num=='+':
                 op1=stack.pop()
                 op2=stack.pop()
-                print(op1,op2,num)
                 stack.append(op1+op2)
             elif num=="-":
                 op1=stack.pop()
                 op2=stack.pop()
-                print(op1,op2,num)
                 stack.append(op2-op1)
             elif num=="/":
                 op1=stack.pop()
                 op2=stack.pop()
-                print(op1,op2,num)
                 div=op2/op1
                 div=ceil(div) if div<0 else floor(div)
                 stack.append(div)
