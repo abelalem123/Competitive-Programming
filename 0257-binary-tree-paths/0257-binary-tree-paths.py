@@ -8,15 +8,15 @@ class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         if not root:
             return []
-        paths = []
-        self.buildPath(root,"", paths)
-        return paths
+        ans = []
+        self.buildPath(root,"", ans)
+        return ans
 
-    def buildPath(self,node, path, paths):
+    def buildPath(self,node, path, ans):
         if not node.left and not node.right:
-            paths.append(path + str(node.val))
+            ans.append(path + str(node.val))
         if node.left:
-            self.buildPath(node.left, path + str(node.val) + "->", paths)
+            self.buildPath(node.left, path + str(node.val) + "->", ans)
         if node.right:
-            self.buildPath(node.right, path + str(node.val) + "->", paths)
+            self.buildPath(node.right, path + str(node.val) + "->", ans)
         
