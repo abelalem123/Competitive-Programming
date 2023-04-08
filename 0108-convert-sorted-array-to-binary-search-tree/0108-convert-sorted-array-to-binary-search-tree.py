@@ -5,18 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-    def sortedArrayToBST(self,nums):
-   
-        if not nums:
+    def helper(self,left,right,nums):
+        if left>right:
             return None
-
-        # Find the middle element and make it the root of the tree.
-        mid = len(nums) // 2
-        root = TreeNode(nums[mid])
-
-        # Recursively construct the left and right subtrees using the left and right halves of the array, respectively.
-        root.left = self.sortedArrayToBST(nums[:mid])
-        root.right = self.sortedArrayToBST(nums[mid+1:])
-
-        return root   
+        mid=(left+right)//2
+        node=TreeNode(nums[mid])
+        node.left=self.helper(left,mid-1,nums)
+        node.right=self.helper(mid+1,right,nums)
+        return node
+    def sortedArrayToBST(self,nums: List[int])->Optional[TreeNode]:
+        left=0
+        right=len(nums)-1
+        return self.helper(left,right,nums)
