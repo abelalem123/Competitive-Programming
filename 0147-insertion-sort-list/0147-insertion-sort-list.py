@@ -5,31 +5,16 @@
 #         self.next = next
 class Solution:
     def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        sorted_head = ListNode(0)
-        sorted_head.next = head
-        sorted_tail = head
-        
-     
-        curr = head.next
-        
+    
+    # def insertionSortList(head):
+        dummy = ListNode(0)
+        curr = head
         while curr:
-            if curr.val >= sorted_tail.val:
-                sorted_tail = curr
-                curr = curr.next
-            else:
-                
-                sorted_tail.next = curr.next
-                
-                
-                insert_pos = sorted_head
-                while insert_pos.next.val < curr.val:
-                    insert_pos = insert_pos.next
-                
-              
-                curr.next = insert_pos.next
-                insert_pos.next = curr
-                
-                
-                curr = sorted_tail.next
-        
-        return sorted_head.next
+            prev = dummy
+            while prev.next and prev.next.val < curr.val:
+                prev = prev.next
+            next_node = curr.next
+            curr.next = prev.next
+            prev.next = curr
+            curr = next_node
+        return dummy.next
