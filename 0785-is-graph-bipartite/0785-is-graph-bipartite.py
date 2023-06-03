@@ -2,21 +2,19 @@ class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         color={}
         def dfs(node):
-            for neighbour in graph[node]:
-                if neighbour in color:
-                    if color[neighbour]==color[node]:
+            for child in graph[node]:
+                if child in color:
+                    if color[child]==color[node]:
                         return False
                 else:
-                    color[neighbour]=1-color[node]
-                    if not dfs(neighbour):
+                    color[child]=1-color[node]
+                    if not dfs(child):
                         return False
             return True
-        for node in range(len(graph)):
-            if node not in color:
-                color[node] = 0
-                if not dfs(node):
-                    return False
-
-        return True
-
         
+        for i in range(len(graph)):
+            if i not in color:
+                color[i]=0
+                if not dfs(i):
+                    return False
+        return True
