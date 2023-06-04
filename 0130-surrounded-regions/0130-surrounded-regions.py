@@ -32,9 +32,9 @@ class Solution:
             for j in range(m):
                 if board[i][j]=='O':
                     board[i][j]='X'
-        for i in range(n):
-            for j in range(m):
-                if board[i][j]=='T':
+                elif board[i][j]=='T':
                     board[i][j]='O'
-        
+         
+                
+      
         
