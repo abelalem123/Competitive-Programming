@@ -1,9 +1,14 @@
 class Solution:
     def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
-        arr.sort()
-        diff = arr[1] - arr[0]
-        for i in range(1, len(arr)-1):
-            if arr[i+1] - arr[i] != diff:
-                return False
-        return True
+        length = len(arr)
+        min_val = min(arr)
+        max_val = max(arr)
 
+        diff = (max_val - min_val) / (length - 1)
+
+        for i in range(length):
+            expected = min_val + i * diff
+            if expected not in arr:
+                return False
+
+        return True
