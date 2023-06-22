@@ -1,6 +1,6 @@
 class Solution:
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        ans=[[] for i in range(n)]
+        ans = [set() for _ in range(n)]
         graph=defaultdict(list)
         incoming=defaultdict(int)
         q=deque()
@@ -15,12 +15,14 @@ class Solution:
      
             for child in graph[c]:
                 incoming[child]-=1
-                ans[child].append(c)
-                for i in ans[c]:
-                    if i not in ans[child]:
-                        ans[child].append(i)
+                ans[child].add(c)
+                ans[child].update(ans[c])
+                # for i in ans[c]:
+                #     if i not in ans[child]:
+                #         ans[child].append(i)
                 # ans[child].extend(ans[c])
-                ans[child].sort()
+               
                 if incoming[child]==0:
                     q.append(child)
+        ans = [(sorted(list(s))) for s in ans]
         return ans
