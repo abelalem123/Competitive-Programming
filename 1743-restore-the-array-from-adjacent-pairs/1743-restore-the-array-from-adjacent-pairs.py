@@ -1,28 +1,25 @@
 class Solution:
     def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
-        graph=defaultdict(list)
         
-        for u,v in adjacentPairs:
-            graph[u].append(v)
-            graph[v].append(u)
+        n = len(adjacentPairs) + 1
+        adj = collections.defaultdict(list)
+
+        for n1, n2 in adjacentPairs:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
         
-        start=adjacentPairs[0][0]
-        
-        for k,v in graph.items():
-            if len(v)==1:
-                start=k
+        node = next(filter(lambda x: len(adj[x])==1,adj.keys()))
+        ret = []
+        prev = None
+
+        while True:
+            ret.append(node)
+            for a in adj[node]:
+                if a != prev:
+                    prev = node
+                    node = a
+                    break
+            else:
                 break
-        visited=set()
-        ans=[]
         
-        def dfs(node):
-            visited.add(node)
-            # ans.append(node)
-            for child in graph[node]:
-                if child in visited: continue
-                dfs(child)
-            ans.append(node)
-        dfs(start)
-        return ans
-    
-   
+        return ret
