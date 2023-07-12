@@ -1,26 +1,29 @@
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
-        if not edges:
-            return True
-        def bfs(node,graph,dest):
-            visited=set([node])
-            queue=deque([node])
-            while queue:
-                
-                node=queue.popleft()
-                print(node)
-                if node==dest:
-                    return True
-
-                for neighbour in graph[node]:
-                    if neighbour not in visited:
-                        visited.add(neighbour)
-                        queue.append(neighbour) 
-            return False
-        graph=defaultdict(list)
+        parent={i:i for i in range(n)}
+        size=[1]*n
+        def findd(x):
+            if x==parent[x]:
+                return x
+            parent[x]=findd(parent[x])
+            return parent[x]
+        
+        def union(x,y):
+            px=findd(x)
+            py=findd(y)
+            
+            if px!=py:
+                if size[px]>size[py]:
+                    parent[py]=px
+                    size[px]+=size[py]
+                else:
+                    parent[px]=py
+                    size[py]+=size[px]
+                    
+        def connected(x,y):
+            return findd(x)==findd(y)
+        
         for x,y in edges:
-            graph[x].append(y)
-            graph[y].append(x)
-        for i in range(len(edges)):
-            if i==source:
-                return bfs(i,graph,destination)
+            union(x,y)
+            
+        return connected(source,destination)
