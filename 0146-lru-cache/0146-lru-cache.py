@@ -9,23 +9,18 @@ class LRUCache:
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
-        self.linlist.remove(key)
-        self.linlist.appendleft(key)
+        v=self.cache.pop(key)
+        self.cache[key]=v
         return self.cache[key]
         
 
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
-            self.linlist.remove(key)
-            self.linlist.appendleft(key)
-            self.cache[key]=value
+            self.cache.pop(key)
         else:
             if len(self.cache)==self.capacity:
-                k=self.linlist.pop()
-                del self.cache[k]
-            self.linlist.appendleft(key)
-            self.cache[key]=value
-
+                del self.cache[next(iter(self.cache))]
+        self.cache[key]=value
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
