@@ -1,22 +1,29 @@
 class Solution:
-    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
-        graph = defaultdict(list)
-        for i, (a, b) in enumerate(edges):
-            graph[a].append([b, succProb[i]])
-            graph[b].append([a, succProb[i]])
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
+        # build graph
+        graph = defaultdict(dict)
+        for edge, prob in zip(edges, succProb):
+            u, v = edge
+            graph[u][v] = prob
+            graph[v][u] = prob
             
-        max_prob = [0.0] * n    
-        max_prob[start] = 1.0
+        heap = []
+       
+        heapq.heappush(heap, (-1, start_node))
         
-        queue = deque([start])
-        while queue:
-            cur_node = queue.popleft()
-            for nxt_node, path_prob in graph[cur_node]:
-
-                # Only update max_prob[nxt_node] if the current path increases
-                # the probability of reach nxt_node.
-                if max_prob[cur_node] * path_prob > max_prob[nxt_node]:
-                    max_prob[nxt_node] = max_prob[cur_node] * path_prob
-                    queue.append(nxt_node)
+      
+        visited = set()
+        while heap:
+            prob, node = heapq.heappop(heap)
+            if node == end_node:
+                # revert to positive when return
+                return  - prob
+            if node in visited:
+                continue
+            visited.add(node)
+            for nei in graph[node]:
+                if nei not in visited:
+                    edgeProb = graph[node][nei]
+                    heapq.heappush(heap, (prob * edgeProb, nei))
                     
-        return max_prob[end]
+        return 0.0
